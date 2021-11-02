@@ -22,7 +22,7 @@
             
           </div> -->
           <div class="nav-content">
-            <span class="nav-title" id="app-title">{{ texts.appTitle[lang] }}</span>
+            <span class="nav-title" id="app-title">{{ texts.appTitle[lang] }} {{ globalVars.version.name }}</span>
             <ul id="tabs-container" class="tabs tabs-transparent">
               <li v-for="screen in screens" class="tab">
                 <a v-bind:href="screen.div">{{ screen.title[lang] }}</a>
@@ -32,8 +32,20 @@
         </nav>
 
         <div class="container">
-            <div id="training">training</div>
-            <div id="settings">settings</div>
+            <div id="app">
+                <div id="training">training</div>
+                <div id="settings">
+                    <div class="input-field col s12">
+                    <select v-on:change="handleLevelChange()" v-model="selectedLevel">
+                      <option v-for="level in levels" v-bind:value="level">
+                        {{ level.orderId }}
+                      </option>
+                    </select>
+                    <label>{{ texts.levelSelectLabel[lang] }}</label>
+              </div>
+                </div>
+                <div id="stats">stats</div>
+            </div>
         </div>
       </div>
 
@@ -49,7 +61,9 @@
       <script type="text/javascript" src="js/buffer-loader.js"></script>
       <script type="text/javascript" src="js/notes-player.js"></script>
 
+      <script src="js/global_vars.js"></script>
       <script src="js/texts.js"></script>
+      <script src="js/levels.js"></script>
       <script src="js/screens.js"></script>
 
       <!-- Import js files -->
